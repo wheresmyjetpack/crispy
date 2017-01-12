@@ -20,5 +20,12 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# configuration
 /config/secrets.yml
 /config/database.yml
+
+# cached assets
+/public/assets/*
+
+# sass
+.sass-cache
