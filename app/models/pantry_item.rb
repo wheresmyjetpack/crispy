@@ -1,0 +1,2 @@
+class PantryItem < ApplicationRecord
+end
