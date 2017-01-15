@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pantry_items#index'
+  root 'sessions#new'
 
   get 'pantry_items', to: 'pantry_items#index'
   get 'login', to: 'sessions#new'
