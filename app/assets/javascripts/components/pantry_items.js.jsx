@@ -5,7 +5,7 @@ class Ingredients extends React.Component {
   }
 
   render() {
-    const items = renderIngredients(this.state.pantryItems);
+    const items = renderIngredients(this.state.ingredients);
 
     return (
       <div className="ingredients">
