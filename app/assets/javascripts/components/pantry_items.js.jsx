@@ -1,14 +1,14 @@
-class PantryItems extends React.Component {
+class Ingredients extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {pantryItems: this.props.data};
+    this.state = {ingredients: this.props.data};
   }
 
   render() {
-    const items = renderPantryItems(this.state.pantryItems);
+    const items = renderIngredients(this.state.pantryItems);
 
     return (
-      <div className="pantry-items">
+      <div className="ingredients">
         <h2 className="title">Pantry</h2>
         <table className="table table-bordered">
           <tbody>
@@ -23,8 +23,8 @@ class PantryItems extends React.Component {
   }
 }
 
-function renderPantryItems(items) {
+function renderIngredients(items) {
   return items.map((itm) => {
-    return <PantryItem key={itm.id} pantryItem={itm} />;
+    return <Ingredient key={itm.id} ingredient={itm} />;
   });
 }
