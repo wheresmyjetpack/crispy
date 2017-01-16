@@ -1,8 +1,11 @@
+const shortid = require('shortid');
+
 class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputs: ['input-0', 'input-1', 'input-2']
+      inputs: [shortid.generate(), shortid.generate(), shortid.generate()],
+      divs: [shortid.generate(), shortid.generate(), shortid.generate()]
     };
   }
 
@@ -24,8 +27,9 @@ class ShoppingList extends React.Component {
 
 
   renderInputs() {
-    return this.state.inputs.map((inputName, index) => {
-      let divName = 'shoppingItem-' + index;
+    let divInputNames = this.state.inputs.map((input, index) => ( [input, this.state.divs[index]] ));
+
+    return divInputNames.map(([inputName, divName]) => {
       return (
         <div className="shopping-item" key={divName}>
           <input name="shopping_list[]" key={inputName} className="form-control my-2" />
@@ -37,15 +41,13 @@ class ShoppingList extends React.Component {
     });
   }
 
-  appendInput() {
-    let newInput = `input-${this.state.inputs.length}`;
-    this.setState({ inputs: this.state.inputs.concat([newInput]) });
-  }
-
   appendShoppingItem() {
-    let newDiv = `shopping-item-${this.state.inputs.length}`;
-    this.setState({ shoppingItems: this.state.inputs.concat([newDiv]) });
-    this.appendInput();
+    let newDiv = shortid.generate();
+    let newInput = shortid.generate();
+    this.setState({
+      divs: this.state.inputs.concat([newDiv]),
+      inputs: this.state.inputs.concat([newInput])
+    });
   }
 
   removeInput(inputName) {
@@ -57,4 +59,8 @@ class ShoppingList extends React.Component {
       }
     );
   }
+}
+
+module.exports = {
+  ShoppingList: ShoppingList
 }
