@@ -8,16 +8,19 @@ class FinalizedShoppingList extends React.Component {
 
   render() {
     return (
-      <div className="card p-4 w-50">
+      <div className="p-4 w-50">
         <h2>
           Shopping List
         </h2>
         <hr />
-      <form role="form" action="/ingredients" method="post" className="form-control">
-        <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} />
-        {this.renderItems()}
-        <input type="submit" className="btn btn-success mt-2" />
-      </form>
+        <form role="form" action="/shopping_list/persist" method="post" className="form-control p-3">
+          <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} />
+          {this.renderItems()}
+          <input type="submit" className="btn btn-success mt-2" />
+          <a className="btn btn-danger mt-2" href="/shopping_list" data-method="delete" rel="nofollow">
+            Cancel
+          </a>
+        </form>
       </div>
     );
   }
