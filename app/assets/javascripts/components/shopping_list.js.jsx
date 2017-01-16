@@ -4,15 +4,14 @@ class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputs: [shortid.generate(), shortid.generate(), shortid.generate()],
-      divs: [shortid.generate(), shortid.generate(), shortid.generate()]
+      inputs: [shortid.generate(), shortid.generate(), shortid.generate()]
     };
   }
 
   render() {
     return (
     <div className="card w-50 p-4">
-      <form role="form" acceptCharset="UTF-8" action="/shopping_list" method="post">
+      <form role="form" acceptCharset="UTF-8" action="/shopping_list" method="post" className="form-inline">
         <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} />
         {this.renderInputs()}
         <hr />
@@ -27,12 +26,10 @@ class ShoppingList extends React.Component {
 
 
   renderInputs() {
-    let divInputNames = this.state.inputs.map((input, index) => ( [input, this.state.divs[index]] ));
-
-    return divInputNames.map(([inputName, divName]) => {
+    return this.state.inputs.map((inputName) => {
       return (
-        <div className="shopping-item" key={divName}>
-          <input name="shopping_list[]" key={inputName} className="form-control my-2" />
+        <div className="shopping-item input-group mr-sm-2" key={inputName}>
+          <input name="shopping_list[]" className="form-control my-2" />
           <button type="button" className="btn btn-danger m-2" onClick={ () => this.removeInput(inputName) }>
             - Item
           </button>
@@ -42,10 +39,8 @@ class ShoppingList extends React.Component {
   }
 
   appendShoppingItem() {
-    let newDiv = shortid.generate();
     let newInput = shortid.generate();
     this.setState({
-      divs: this.state.inputs.concat([newDiv]),
       inputs: this.state.inputs.concat([newInput])
     });
   }
@@ -53,8 +48,8 @@ class ShoppingList extends React.Component {
   removeInput(inputName) {
     this.setState(
       {
-        inputs: this.state.inputs.filter( (item) => {
-          return item !== inputName;
+        inputs: this.state.inputs.filter( (input) => {
+          return input !== inputName;
         })
       }
     );
