@@ -2,5 +2,5 @@
 //= require react_ujs
 //= require components
 
-ShoppingList = require('./shopping_list').ShoppingList;
-FinalizedShoppingList = require('./finalized_shopping_list');
+window.ShoppingList = require('./shopping_list').ShoppingList;
+window.FinalizedShoppingList = require('./finalized_shopping_list');
