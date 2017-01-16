@@ -3,3 +3,4 @@
 //= require components
 
 ShoppingList = require('./shopping_list').ShoppingList;
+FinalizedShoppingList = require('./finalized_shopping_list');

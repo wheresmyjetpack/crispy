@@ -10,7 +10,7 @@ class ShoppingList extends React.Component {
 
   render() {
     return (
-    <div className="card w-50 p-4">
+    <div className="card w-50 p-4 mt-sm-3 mb-sm-4">
       <form role="form" acceptCharset="UTF-8" action="/shopping_list" method="post" className="form-inline">
         <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} />
         {this.renderInputs()}
