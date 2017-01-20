@@ -26,12 +26,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rectify'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
   gem 'rspec'
   gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'wisper-rspec', require: false
 end
 
 group :development do
+  gem 'byebug', platform: :mri
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
