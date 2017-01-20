@@ -20,13 +20,15 @@ class Navbar extends React.Component {
     const isLoggedIn = this.state.userLoggedIn;
 
     if (isLoggedIn) {
-      return this.loggedInItems();
+      return <LoggedInNav />;
     } else {
-      return this.loggedOutItems();
+      return <LoggedOutNav />;
     }
   }
+}
 
-  loggedInItems() {
+class LoggedInNav extends React.Component {
+  render() {
     return (
       <nav className="nav justify-content-end logged-in">
         <a href="/ingredients" className="nav-link">Home</a>
@@ -41,14 +43,16 @@ class Navbar extends React.Component {
       </nav>
     );
   }
+}
 
-  loggedOutItems() {
+class LoggedOutNav extends React.Component {
+  render() {
     return (
       <nav className="nav justify-content-end logged-out">
         <a href="/login" className="nav-link">Sign In</a>
         <a href="#" className="nav-link">Sign Up</a>
       </nav>
-    ) 
+    );
   }
 }
 
