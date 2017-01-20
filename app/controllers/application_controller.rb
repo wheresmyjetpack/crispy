@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :user_signed_in?
   protect_from_forgery with: :exception
   include SessionsHelper
 
