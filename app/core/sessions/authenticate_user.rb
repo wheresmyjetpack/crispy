@@ -1,12 +1,13 @@
 module Sessions
   class AuthenticateUser < Rectify::Command
-    def initialize(email:, password:)
+    def initialize(email:, password:, user_relation: User)
       @email = email
       @password = password
+      @user_relation = user_relation
     end
 
     def call
-      user = User.find_by(email: email.downcase)
+      user = user_relation.find_by_email(email.downcase)
       if user && user.authenticate(password)
         broadcast(:ok, user)
       else
@@ -16,6 +17,6 @@ module Sessions
 
     private
 
-    attr_reader :email, :password
+    attr_reader :email, :password, :user_relation
   end
 end
