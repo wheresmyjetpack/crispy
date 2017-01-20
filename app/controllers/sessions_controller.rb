@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         log_in(user)
         flash[:success] = "Welcome to the app!"
 
-        redirect_to(current_user)
+        redirect_to(root_path)
       end
       on(:danger) do
         flash.now[:danger] = 'Invalid email/password'

@@ -2,8 +2,7 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoggedIn: this.props.userLoggedIn,
-      currentUserId: this.props.currentUserId
+      userLoggedIn: this.props.userLoggedIn
     }
   }
 
@@ -21,7 +20,7 @@ class Navbar extends React.Component {
     const isLoggedIn = this.state.userLoggedIn;
 
     if (isLoggedIn) {
-      return <LoggedInNav userId={this.state.currentUserId} />;
+      return <LoggedInNav rootUri={this.props.rootUri} pantryUri={this.props.pantryUri} />;
     } else {
       return <LoggedOutNav />;
     }
@@ -30,17 +29,16 @@ class Navbar extends React.Component {
 
 class LoggedInNav extends React.Component {
   render() {
-    let userProfileUri = `/users/${this.props.userId}`;
     return (
       <nav className="nav justify-content-end logged-in">
-        <a href="/ingredients" className="nav-link">Home</a>
+        <a href={this.props.rootUri} className="nav-link">Home</a>
         <a href="/shopping_list/new" className="nav-link">Go Shopping</a>
         <div className="nav-item dropdown dropdown-menu-right">
           <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
           <div className="dropdown-menu">
-            <a href={userProfileUri} className="nav-link dropdown-item">View Profile</a>
-            <a href="/logout" className="nav-link dropdown-item" data-method="delete">Logout</a>
+            <a href={this.props.pantryUri} className="nav-link dropdown-item">View Pantry</a>
             <a href="#" className="nav-link dropdown-item">Settings</a>
+            <a href="/logout" className="nav-link dropdown-item" data-method="delete">Logout</a>
           </div>
         </div>
       </nav>
