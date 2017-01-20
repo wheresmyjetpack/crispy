@@ -1,0 +1,50 @@
+@import "variables"
+
+=thicker-borders
+  border: 2px solid
+
+=theme-borders
+  +thicker-borders
+  border-color: $alternate-color
+
+body
+  padding-top: 120px
+
+p, h
+
+.card
+  +theme-borders
+
+.card-header
+  background-color: #f4f5ff
+
+.form-control
+  +theme-borders
+  
+.btn
+  +thicker-borders
+
+.btn-primary
+  background-color: $primary-color
+
+.btn-primary:hover
+  background-color: $theme-color
+  border-color: $theme-color
+
+.btn-primary:focus
+  box-shadow: 0 0 0 2px rgba(144, 24, 140, 0.5)
+
+.btn-success
+  background-color: $success-color
+
+.btn-success:hover
+  background-color: #226fb1
+  border-color: #226fb1
+
+.btn-outline-danger
+  border-color: $danger-color
+
+.btn-outline-danger:hover
+  background-color: $danger-color
+  border-color: $danger-color
+
