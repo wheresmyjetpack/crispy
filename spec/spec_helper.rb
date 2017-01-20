@@ -5,6 +5,7 @@ require 'rubygems'
 require 'active_support/all'
 require 'ostruct'
 require 'rectify'
+require 'wisper/rspec/matchers'
 
 RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
@@ -15,6 +16,8 @@ RSpec.configure do |config|
   config.backtrace_exclusion_patterns ||= []
   config.backtrace_exclusion_patterns.push(/bundler/, /rspec-core/)
   config.alias_it_should_behave_like_to :it_has_behavior, 'has behvaior:'
+
+  config.include(Wisper::RSpec::BroadcastMatcher)
 end
 
 def ostruct(*args, &block)
