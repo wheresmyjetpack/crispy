@@ -16,6 +16,7 @@ describe Ingredients::StoreIngredients do
 
       describe 'the form' do
         subject { form_type }
+
         it { is_expected.to have_received(:from_params).once.with(1) }
         it { is_expected.to have_received(:from_params).once.with(2) }
         it { is_expected.to have_received(:from_params).once.with(3) }
@@ -23,11 +24,13 @@ describe Ingredients::StoreIngredients do
 
       describe 'the relations' do
         subject { relation }
+
         it { is_expected.to have_received(:new).exactly(3).times.with({name: form_instance.name}) }
       end
 
       describe 'the new records from the relations' do
         subject { record }
+
         it { is_expected.to have_received(:save!).exactly(3).times }
       end
     end
