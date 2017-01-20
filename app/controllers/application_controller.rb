@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  helper_method :user_signed_in?
-  protect_from_forgery with: :exception
   include SessionsHelper
+
+  protect_from_forgery with: :exception
+  helper_method :user_signed_in?
 
   def authenticate_user!
     redirect_to_login unless user_signed_in?
