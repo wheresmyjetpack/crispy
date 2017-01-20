@@ -4,8 +4,9 @@ $:.unshift File.expand_path '../..', __FILE__
 require 'rubygems'
 require 'active_support/all'
 require 'ostruct'
+require 'rectify'
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_doubled_constant_names = true
     mocks.verify_partial_doubles = true
