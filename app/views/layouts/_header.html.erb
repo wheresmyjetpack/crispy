@@ -1,15 +1,1 @@
-<header class="navbar" id="fixed-navbar">
-  <div class="container">
-    <nav class="nav justify-content-end">
-      <%= link_to "Home", ingredients_path, class: "nav-link" %>
-      <%= link_to "Go Shopping", shopping_list_new_path, class: "nav-link" %>
-      <div class="nav-item dropdown dropdown-menu-right">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-        <div class="dropdown-menu">
-          <%= link_to "Logout", logout_path, class: "nav-link dropdown-item", method: :delete %>
-          <a href="" class="nav-link dropdown-item">Settings</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-</header>
+<%= react_component 'Navbar', {data: user_signed_in?} %>
