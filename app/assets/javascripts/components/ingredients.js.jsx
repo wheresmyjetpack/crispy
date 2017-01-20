@@ -8,13 +8,17 @@ class Ingredients extends React.Component {
     const items = renderIngredients(this.state.ingredients);
 
     return (
-      <div className="ingredients">
-        <h2 className="title">Pantry</h2>
-        <table className="table table-bordered">
-          <tbody>
+      <div className="ingredients card p-1 mb-sm-3">
+        <div className="card-header mb-2">
+          <h1 className="title">Pantry</h1>
+        </div>
+        <table className="table table-bordered table-hover">
+          <thead className="thead-default">
             <tr>
               <th>Name</th>
             </tr>
+          </thead>
+          <tbody>
             {items}
           </tbody>
         </table>
