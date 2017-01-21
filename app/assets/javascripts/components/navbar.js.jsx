@@ -19,26 +19,21 @@ class NavbarContainer extends React.Component {
   }
 }
 
-class Navbar extends React.Component {
-  render() {
-    return (
-      <header className="navbar" id="fixed-navbar">
-        <div className="container">
-          {this.navItems()}
-        </div>
-      </header>
-    );
+const Navbar = ({ userLoggedIn, rootUri, pantryUri }) => {
+  let nav
+  if (userLoggedIn) {
+    nav = <LoggedInNav rootUri={rootUri} pantryUri={pantryUri} />;
+  } else {
+    nav = <LoggedOutNav />;
   }
 
-  navItems() {
-    const isLoggedIn = this.props.userLoggedIn;
-
-    if (isLoggedIn) {
-      return <LoggedInNav rootUri={this.props.rootUri} pantryUri={this.props.pantryUri} />;
-    } else {
-      return <LoggedOutNav />;
-    }
-  }
+  return (
+    <header className="navbar" id="fixed-navbar">
+      <div className="container">
+        {nav}
+      </div>
+    </header>
+  );
 }
 
 const LoggedInNav = ({ rootUri, pantryUri }) => (
