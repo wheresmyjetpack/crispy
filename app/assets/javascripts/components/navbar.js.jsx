@@ -9,13 +9,9 @@ class NavbarContainer extends React.Component {
   render() {
     const isLoggedIn = this.state.userLoggedIn;
 
-    if (isLoggedIn) {
-      return ( 
-        <Navbar userLoggedIn={this.state.userLoggedIn} rootUri={this.props.rootUri} pantryUri={this.props.pantryUri} />
-      );
-    } else {
-      return <Navbar />;
-    }
+    return ( 
+      <Navbar userLoggedIn={this.state.userLoggedIn} rootUri={this.props.rootUri} pantryUri={this.props.pantryUri} />
+    );
   }
 }
 
