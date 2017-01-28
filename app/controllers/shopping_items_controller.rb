@@ -7,8 +7,7 @@ class ShoppingItemsController < ApplicationController
   end
 
   def new
-    session_list = session.try(:[], :shopping_list)
-    redirect_to :show unless session_list.nil? || session_list.empty?
+    redirect_to action: :show unless session[:shopping_list].nil?
   end
 
   def create
