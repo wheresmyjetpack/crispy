@@ -19,7 +19,7 @@ class FinalizedShoppingList extends React.Component {
           Shopping List
         </h2>
         <hr />
-        <form role="form" action="/shopping_list/persist" method="post" className="form-control p-3">
+        <form role="form" action="/shopping_list/persist" method="post" className="p-3">
           <input type="hidden" name="authenticity_token" value={this.props.authToken} />
           {this.renderItems()}
           <input type="submit" className="btn btn-success mt-2" />
@@ -33,7 +33,7 @@ class FinalizedShoppingList extends React.Component {
 
   renderItems() {
     return this.props.items.map((itm) => {
-      return <ShoppingItem key={shortid.generate()} name={itm} />;
+      return <ShoppingItem key={shortid.generate()} name={itm.name} amount={itm.amount} />;
     });
   }
 }
@@ -41,14 +41,13 @@ class FinalizedShoppingList extends React.Component {
 class ShoppingItem extends React.Component {
   render() {
     let inputName = `ingredients[${titleize(this.props.name)}]`;
+    let label = `${this.props.amount} ${this.props.name}`
     return (
         <div className="form-check mb-2 mr-sm-2 mb-sm-0">
-          <button type="button" className="btn btn-primary my-2">
-            <label className="form-check-label">
-              <input className="form-check-input mr-2" type="checkbox" name={inputName} />
-              {this.props.name}
-            </label>
-          </button>
+          <label className="form-check-label">
+            <input className="form-check-input mr-2" type="checkbox" name={inputName} />
+            {label}
+          </label>
         </div>
     );
   }
