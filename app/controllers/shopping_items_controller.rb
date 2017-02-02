@@ -17,7 +17,7 @@ class ShoppingItemsController < ApplicationController
         flash[:success] = 'Shopping list created'
         redirect_to action: :show
       end
-      on(:danger) do
+      on(:invalid) do
         flash[:danger] = 'Please enter a few items in the shopping list'
         render 'new'
       end
@@ -35,7 +35,7 @@ class ShoppingItemsController < ApplicationController
     redirect_to ingredients_path
   end
 
-  private
+  protected
 
   def destroy_shopping_list
     session.delete(:shopping_list)
