@@ -56,20 +56,26 @@ const ShoppingList = ({ inputs, handleOnClick, authToken }) => {
 
 class ShoppingItem extends React.Component {
   render() {
+    let inputName = `shopping_list[${this.props.name}][name]`;
+    let inputAmt = `shopping_list[${this.props.name}][amount]`;
+
     return (
-      <div className="row">
-        <div className="col-lg-6 col-md-8 col-xs-12">
-          <div className="shopping-item input-group mr-sm-2">
-            <input name="shopping_list[]" className="form-control my-2" />
-            <button type="button" 
-              className="btn btn-outline-danger m-2" 
-              onClick={ () => this.props.handleOnClick(this) } >
-                - Item
-            </button>
-          </div>
+      <div className="row form-group">
+        <div className="col-sm-6">
+          <input name={inputName} className="form-control" />
+        </div>
+        <div className="col-sm-2">
+          <input name={inputAmt} className="form-control" type="text" />
+        </div>
+        <div className="col-sm-4">
+          <button type="button"
+            className="btn btn-outline-danger"
+            onClick={ () => this.props.handleOnClick(this) } >
+            - Item
+          </button>
         </div>
       </div>
-    );
+      );
   }
 }
 
@@ -78,7 +84,7 @@ const initializeInputs = function*(n, callback) {
     let elementKey = shortid.generate();
     yield (
       <ShoppingItem key={elementKey} name={elementKey} handleOnClick={callback} />
-    );
+      );
   }
 }
 
