@@ -8,7 +8,7 @@ module ShoppingItems
     end
 
     def call
-      return broadcast(:invalid) if prepared_items.empty?
+      return broadcast(:invalid) if prepared_items.empty? || prepared_items.any? { |item| item.invalid? }
       broadcast(:ok, prepared_items)
     end
 
