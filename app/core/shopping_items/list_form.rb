@@ -1,8 +1,5 @@
 module ShoppingItems
-  class ListForm
-    include Virtus.value_object
-    include ActiveModel::Validations
-
+  class ListForm < Forms::Immutable
     values do
       attribute :name, String
       attribute :amount, String
