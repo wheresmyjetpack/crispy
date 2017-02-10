@@ -30,7 +30,8 @@ class ShoppingItemsController < ApplicationController
   end
 
   def persist
-    ShoppingItems::PersistShoppingItems.call(params[:ingredients])
+    raise 'h'
+    ShoppingItems::SaveItems.call(params[:ingredients])
     destroy_shopping_list
     redirect_to ingredients_path
   end
