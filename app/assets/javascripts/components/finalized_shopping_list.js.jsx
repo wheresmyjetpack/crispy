@@ -40,12 +40,14 @@ class FinalizedShoppingList extends React.Component {
 
 class ShoppingItem extends React.Component {
   render() {
-    let inputName = `ingredients[${titleize(this.props.name)}]`;
+    let itemName = titleize(this.props.name)
+    let ingredientsInputName = `ingredients[]`;
+    let amountInputName = `${ingredientsInputName}[${itemName}]amount`
     let label = `${this.props.amount} ${this.props.name}`
     return (
         <div className="form-check mb-2 mr-sm-2 mb-sm-0">
           <label className="form-check-label">
-            <input className="form-check-input mr-2" type="checkbox" name={inputName} />
+            <input className="form-check-input mr-2" type="checkbox" value={this.props.amount} name={amountInputName} />
             {label}
           </label>
         </div>
