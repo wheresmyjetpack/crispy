@@ -30,9 +30,15 @@ class ShoppingItemsController < ApplicationController
   end
 
   def persist
-    raise 'h'
-    ShoppingItems::SaveItems.call(params[:ingredients])
-    destroy_shopping_list
+    shopping_items = params[:ingredients].map(&:to_hash)
+    ShoppingItems::SaveItems.call(shopping_items) do
+      on(:ok) do
+        destroy_shopping_list
+        flash[:success] = 'Your items have been stored in the pantry'
+      end
+      on(:invalid) { flash[:danger] = 'There was an error saving your items' }
+    end
+
     redirect_to ingredients_path
   end
 
