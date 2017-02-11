@@ -33,25 +33,60 @@ class FinalizedShoppingList extends React.Component {
 
   renderItems() {
     return this.props.items.map((itm) => {
-      return <ShoppingItem key={shortid.generate()} name={itm.name} amount={itm.amount} />;
+      let elemKey = shortid.generate();
+      return <ShoppingItem key={elemKey} name={itm.name} itemId={elemKey} amount={itm.amount} />;
     });
   }
 }
 
 class ShoppingItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false
+    }
+
+    this.toggleChecked = this.toggleChecked.bind(this)
+  }
+
   render() {
     let itemName = titleize(this.props.name)
-    let ingredientsInputName = `ingredients[]`;
-    let amountInputName = `${ingredientsInputName}[${itemName}]amount`
     let label = `${this.props.amount} ${this.props.name}`
+    let hiddenFields = (this.state.checked ? this.addHiddenFields(this.props.itemId, itemName) : null)
+
+    return this.present(label, this.state.checked, this.toggleChecked, hiddenFields)
+  }
+
+  present(label, checked, handleCheck, hiddenFields) {
+
     return (
-        <div className="form-check mb-2 mr-sm-2 mb-sm-0">
-          <label className="form-check-label">
-            <input className="form-check-input mr-2" type="checkbox" value={this.props.amount} name={amountInputName} />
-            {label}
-          </label>
-        </div>
+      <div className="form-check mb-2 mr-sm-2 mb-sm-0">
+        <label className="form-check-label">
+          <input className="form-check-input mr-2" type="checkbox" defaultChecked={checked} onChange={handleCheck} />
+          {checked ? hiddenFields : null}
+          {label}
+        </label>
+      </div>
     );
+  }
+
+  addHiddenFields(elemId, itemName) {
+    let ingredientsParams = `ingredients[]`;
+    let ingredientInputName = `${ingredientsParams}name`;
+    let amountInputName = `${ingredientsParams}amount`;
+
+    return (
+      <div key={elemId}>
+        <input type="hidden" name={ingredientInputName} value={itemName} />
+        <input type="hidden" name={amountInputName} value={this.props.amount} />
+      </div>
+    )
+  }
+
+  toggleChecked(e) {
+    this.setState({
+      checked: e.target.checked
+    })
   }
 }
 
