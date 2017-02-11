@@ -1,10 +1,9 @@
 module Ingredients
-  class Form < Forms::Immutable
-    values do
-      attribute :name, String
-      attribute :amount, Measurement
-    end
+  class Form < Dry::Struct
+    constructor_type :strict
 
-    validates :name, :amount, presence: true
+    attribute :name, Types::String
+    attribute :amount, Types::Int
+    attribute :unit, Types::String
   end
 end
