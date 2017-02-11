@@ -5,6 +5,6 @@ module Ingredients
       attribute :amount, Measurement
     end
 
-    validates :name, presence: true
+    validates :name, :amount, presence: true
   end
 end
