@@ -3,15 +3,16 @@ class HashProjection
     @fields = fields
   end
 
-  def apply(source)
+  def project(source)
     projection = pluck_to_hash(source)
-    return projection unless block_given?
-    projection.map { |proj| yield proj }
+    block_given? ? projection.map { |proj| yield proj } : projection
   end
 
   def self.for_ingredient
     new(:name, :amount)
   end
+
+  alias_method :apply, :project
 
   private
 
