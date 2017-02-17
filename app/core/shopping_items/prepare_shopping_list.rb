@@ -8,8 +8,9 @@ module ShoppingItems
     end
 
     def call
-      return broadcast(:invalid) if prepared_items.empty? || prepared_items.any? { |item| item.invalid? }
-      broadcast(:ok, prepared_items)
+      item_list = prepared_items
+      return broadcast(:invalid) if item_list.empty?
+      broadcast(:ok, item_list)
     end
 
     private

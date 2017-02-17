@@ -1,6 +1,6 @@
 module ShoppingItems
   class SaveItems < Rectify::Command
-    def initialize(items, query: Ingredients::Form, repo: Ingredients::Repository.new)
+    def initialize(items, query: Ingredients::CreateForm, repo: Ingredients::Repository.new)
       @items = normalize_keys(items)
       @query = query
       @repo = repo
@@ -35,7 +35,7 @@ module ShoppingItems
       measure = item.fetch(:amount).to_measurement
       item[:unit] = measure.unit
       item[:amount] = measure.quantity
-      new_query(**item)
+      item
     end
   end
 end

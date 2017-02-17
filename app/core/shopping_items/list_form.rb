@@ -1,10 +1,8 @@
 module ShoppingItems
-  class ListForm < Forms::Immutable
-    values do
-      attribute :name, String
-      attribute :amount, String
-    end
+  class ListForm < Dry::Struct
+    constructor_type :strict
 
-    validates :name, :amount, presence: true
+    attribute :name, String
+    attribute :amount, String
   end
 end
