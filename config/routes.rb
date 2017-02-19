@@ -11,5 +11,11 @@ Rails.application.routes.draw do
   post 'shopping_list/persist', to: 'shopping_items#persist'
   delete 'shopping_list', to: 'shopping_items#destroy'
 
+  namespace 'api' do
+    namespace 'v1' do
+      get 'measurements', to: 'measurements#index'
+    end
+  end
+
   resources :ingredients
 end
