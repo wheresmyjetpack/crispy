@@ -47,7 +47,7 @@ class ShoppingListContainer extends React.Component {
         name={elementKey}
         hasDanger={hasDanger}
         handleOnClick={onRemove}
-        handleBlur={handleOnBlur}/>
+        handleBlur={handleOnBlur} />
     );
   }
 
@@ -73,10 +73,12 @@ class ShoppingListContainer extends React.Component {
       success: (data) => {
         if (!data) {
           this.setState({
+            // Flag the amount as invalid
             hasDanger: (this.state.hasDanger.includes(context) ? this.state.hasDanger : this.state.hasDanger.concat(context))
           });
         } else {
           this.setState({
+            // Unflag the invalid amount
             hasDanger: this.state.hasDanger.filter( (name) => {
               return name !== context
             })
