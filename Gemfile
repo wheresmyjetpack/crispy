@@ -10,7 +10,7 @@ source 'https://rails-assets.org' do
 end
 
 gem 'pg'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0.2'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap', '~> 4.0.0.alpha3'
