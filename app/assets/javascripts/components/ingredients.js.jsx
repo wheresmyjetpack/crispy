@@ -16,6 +16,8 @@ class Ingredients extends React.Component {
           <thead className="thead-default">
             <tr>
               <th>Name</th>
+              <th>Amount</th>
+              <th>Units</th>
             </tr>
           </thead>
           <tbody>
