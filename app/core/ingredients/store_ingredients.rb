@@ -8,7 +8,7 @@ module Ingredients
 
     def call
       build_forms.each do |form|
-        create_ingredient(form)
+        create_ingredient(form.to_h)
       end
       broadcast(:ok)
     end
@@ -18,12 +18,12 @@ module Ingredients
     attr_reader :form_type, :ingredients, :relation
 
     def create_ingredient(form)
-      ingredient = relation.new(name: form.name)
+      ingredient = relation.new(**form)
       ingredient.save!
     end
 
     def build_forms
-      ingredients.map { |ingredient| form_type.from_params(ingredient) }
+      ingredients.map { |ingredient| form_type.new(ingredient) }
     end
   end
 end

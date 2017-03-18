@@ -1,9 +1,9 @@
 module Ingredients
-  class Entity < Forms::Immutable
-    values do
-      attribute :name, String
-    end
+  class Entity < Dry::Struct
+    constructor_type :strict
 
-    validates :name, presence: true
+    attribute :name, Types::String
+    attribute :amount, Types::Int
+    attribute :unit, Types::String
   end
 end

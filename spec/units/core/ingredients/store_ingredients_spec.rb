@@ -1,10 +1,10 @@
 require 'spec_helper'
 require 'core/ingredients/store_ingredients'
-require 'core/ingredients/ingredient_form'
+require 'core/ingredients/entity'
 
 describe Ingredients::StoreIngredients do
-  let(:form_type) { class_double(Ingredients::IngredientForm, from_params: form_instance) }
-  let(:form_instance) { instance_double(Ingredients::IngredientForm, name: 'ingredient name') }
+  let(:form_type) { class_double(Ingredients::Entity, new: form_instance) }
+  let(:form_instance) { instance_double(Ingredients::Entity, name: 'ingredient name') }
   let(:record) { double('record', save!: nil) }
   let(:relation) { double('relation', new: record) }
 
@@ -17,9 +17,9 @@ describe Ingredients::StoreIngredients do
       describe 'the form' do
         subject { form_type }
 
-        it { is_expected.to have_received(:from_params).once.with(1) }
-        it { is_expected.to have_received(:from_params).once.with(2) }
-        it { is_expected.to have_received(:from_params).once.with(3) }
+        it { is_expected.to have_received(:new).once.with(1) }
+        it { is_expected.to have_received(:new).once.with(2) }
+        it { is_expected.to have_received(:new).once.with(3) }
       end
 
       describe 'the relations' do

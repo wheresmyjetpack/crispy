@@ -1,6 +1,6 @@
 module ShoppingItems
   class SaveItems < Rectify::Command
-    def initialize(items, query: Ingredients::CreateForm, repo: Ingredients::Repository.new)
+    def initialize(items, query: Ingredients::Entity, repo: Ingredients::Repository.new)
       @items = normalize_keys(items)
       @query = query
       @repo = repo

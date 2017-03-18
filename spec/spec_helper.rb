@@ -1,11 +1,18 @@
-$:.unshift File.expand_path '../../app', __FILE__
-$:.unshift File.expand_path '../..', __FILE__
+require 'rspec'
+require 'wisper/rspec/matchers'
+require 'byebug'
+
+$LOAD_PATH.unshift File.expand_path '../../app', __FILE__
+$LOAD_PATH.unshift File.expand_path '../..', __FILE__
 
 require 'rubygems'
 require 'active_support/all'
 require 'ostruct'
 require 'rectify'
-require 'wisper/rspec/matchers'
+require 'dry-struct'
+require 'dry-types'
+require 'app/core/types'
+
 
 RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
