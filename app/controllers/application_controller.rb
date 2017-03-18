@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  include NavHelper
 
   protect_from_forgery with: :exception
   helper_method :user_signed_in?
