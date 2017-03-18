@@ -6,7 +6,8 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    Ingredients::StoreIngredients.call(params[:ingredients])
-    redirect_to(action: :index)
+    Ingredients::StoreIngredients.call(params[:ingredients]) do
+      on(:ok) { redirect_to ingredients_path }
+    end
   end
 end

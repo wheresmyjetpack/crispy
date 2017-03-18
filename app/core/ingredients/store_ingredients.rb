@@ -10,6 +10,7 @@ module Ingredients
       build_forms.each do |form|
         create_ingredient(form)
       end
+      broadcast(:ok)
     end
 
     private
