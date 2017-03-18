@@ -1,6 +1,6 @@
 module Ingredients
   class StoreIngredients < Rectify::Command
-    def initialize(ingredients, form_type: Ingredients::IngredientForm, relation: Ingredient)
+    def initialize(ingredients, form_type: Ingredients::Entity, relation: Ingredient)
       @form_type = form_type
       @ingredients = ingredients
       @relation = relation

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'core/ingredients/ingredient_form'
+require 'core/ingredients/entity'
 
-describe Ingredients::IngredientForm do
+describe Ingredients::Entity do
   subject { described_class }
 
   it { is_expected.to respond_to(:name) }

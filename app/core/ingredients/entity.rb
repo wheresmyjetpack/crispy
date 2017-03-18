@@ -1,5 +1,5 @@
 module Ingredients
-  class IngredientForm < Forms::Immutable
+  class Entity < Forms::Immutable
     values do
       attribute :name, String
     end
