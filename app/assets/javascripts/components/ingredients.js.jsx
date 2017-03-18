@@ -34,3 +34,13 @@ function renderIngredients(items) {
     return <Ingredient key={itm.id} ingredient={itm} />;
   });
 }
+
+const Ingredient = ({ item_id, ingredient }) => {
+  return(
+    <tr key={item_id}>
+      <td>{ingredient.name}</td>
+      <td>{ingredient.amount}</td>
+      <td>{ingredient.unit}</td>
+    </tr>
+  );
+}
