@@ -17,7 +17,6 @@ class Ingredients extends React.Component {
             <tr>
               <th>Name</th>
               <th>Amount</th>
-              <th>Units</th>
             </tr>
           </thead>
           <tbody>
@@ -39,8 +38,7 @@ const Ingredient = ({ item_id, ingredient }) => {
   return(
     <tr key={item_id}>
       <td>{ingredient.name}</td>
-      <td>{ingredient.amount}</td>
-      <td>{ingredient.unit}</td>
+      <td>{ingredient.measure}</td>
     </tr>
   );
 }

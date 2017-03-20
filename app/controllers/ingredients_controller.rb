@@ -1,8 +1,14 @@
 class IngredientsController < ApplicationController
+  include Rectify::ControllerHelpers
+
   before_action :authenticate_user!
 
   def index
-    @ingredients = Ingredient.all
+    Ingredients::FetchItems.call do
+      on(:ok) do |ingredients|
+        expose(ingredients: ingredients)
+      end
+    end
   end
 
   def create
