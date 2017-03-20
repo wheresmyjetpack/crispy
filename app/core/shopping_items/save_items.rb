@@ -1,41 +1,37 @@
 module ShoppingItems
   class SaveItems < Rectify::Command
-    def initialize(items, query: Ingredients::Entity, repo: Ingredients::Repository.new)
-      @items = normalize_keys(items)
-      @query = query
-      @repo = repo
+    def initialize(items, model: Ingredient, projection: Ingredients::ExpandMeasure)
+      @items = items
+      @model = model
+      @projection = projection
     end
 
     def call
-      return broadcast(:ok) if persist(project_to_querys)
-      broadcast(:invalid)
+      forms = project(items)
+      return broadcast(:invalid) unless forms
+      broadcast(:ok) if create_from(forms)
     end
 
     private
 
-    attr_reader :items, :repo, :query
+    attr_reader :items, :model, :projection
 
-    def normalize_keys(params)
-      params.map(&:symbolize_keys)
+    def create_from(forms)
+      forms.map do |record|
+        existing = model.find_by(name: record.name)
+        existing.nil? ? model.create(**record) : update(existing, record)
+      end
     end
 
-    def project_to_querys
-      items.map { |item| new_query(**parse_measurement(item)) }
+    def update(existing, record)
+      measure = "#{existing.amount} #{existing.unit}".to_measurement
+      measure += "#{record.amount} #{existing.unit}".to_measurement
+      record = record.to_h.merge(amount: measure.quantity, unit: measure.unit)
+      existing.update(**record)
     end
 
-    def persist(records)
-      records.each { |record| repo.write(record) }
-    end
-
-    def new_query(record)
-      query.new(record)
-    end
-
-    def parse_measurement(item)
-      measure = item.fetch(:amount).to_measurement
-      item[:unit] = measure.unit
-      item[:amount] = measure.quantity
-      item
+    def project(data)
+      projection.new.call(data)
     end
   end
 end
