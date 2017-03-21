@@ -1,5 +1,5 @@
 module Ingredients
-  CollapseMeasure = Class.new(Transproc::Transformer[Functions]) do
+  class CollapseMeasure < Transproc::Transformer[Functions]
     map_array do
       symbolize_keys
       nest :measure, [:amount, :unit]
