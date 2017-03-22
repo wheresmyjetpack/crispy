@@ -26,7 +26,7 @@ gem 'rectify', '~> 0.8.0'
 gem 'ruby-measurement'
 gem 'pluck_to_hash', '~> 0.2'
 gem 'dry-struct', '~> 0.1.1'
-gem 'transproc'
+gem 'transproc', '~> 1.0.2'
 
 group :development, :test do
   gem 'rspec'
