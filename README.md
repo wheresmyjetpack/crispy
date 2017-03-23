@@ -1,6 +1,6 @@
 # Crispy
 
-Cripsy is a shopping-list builder, pantry logging service, and recipe-finder app all rolled into one. It is built on the Ruby on Rails framework, but leverages design patterns and programming paradigms not typically found in a vanilla RoR application.
+Crispy is a shopping-list builder, pantry logging service, and recipe-finder app all rolled into one. It is built on the Ruby on Rails framework, but leverages design patterns and programming paradigms not typically found in a vanilla RoR application.
 
 ## Features
 
