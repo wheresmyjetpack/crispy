@@ -1,9 +1,7 @@
 module Persistence
   module RepositoryBase
     extend ActiveSupport::Concern
-    mattr_reader :model do
-      raise NoModelError, "Data model not set for #{to_s}"
-    end
+    mattr_reader :model
 
     class_methods do
       def source_model(model)
