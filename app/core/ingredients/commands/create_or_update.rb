@@ -5,19 +5,25 @@ module Ingredients
 
       Functions.register(:collapse_measurement) { |v| "#{v.amount} #{v.unit}".to_measurement }
 
-      def initialize(model: Ingredient)
+      def initialize(record, model, **opts)
+        @record = record
         @model = model
+        @opts = opts
       end
 
-      def call(record, **opts)
+      def call
         query = lookup.call(model: model, opts: opts)
         return create.call(model: model, record: record) if query.nil?
         update.call(existing: query, new: record)
       end
 
+      def self.call(record, model= Ingredient, **opts)
+        new(record, model, opts).call
+      end
+
       private
 
-      attr_reader :model
+      attr_reader :record, :model, :opts
 
       def lookup
         t(-> h { h[:model].find_by(**h[:opts]) })
