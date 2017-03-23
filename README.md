@@ -34,4 +34,4 @@ Current user-facing features are minimal:
 
 ## Contribution Guidelines
 
-Feel free to fork Crispy and open a pull request against the current release branch (v0.1.0-dev).
+Feel free to fork Crispy and open a pull request against the current release branch (v0.1.0-dev2).
