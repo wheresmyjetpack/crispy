@@ -1,6 +1,6 @@
 module Ingredients
   class FetchItems < Rectify::Command
-    def initialize(source: Ingredient, projection: Ingredients::CollapseMeasure)
+    def initialize(source: Ingredients::Repository, projection: Ingredients::CollapseMeasure)
       @source = source
       @projection = projection
     end
@@ -20,7 +20,7 @@ module Ingredients
     end
 
     def fetch_from_source
-      source.all.map { |record| record.serializable_hash }
+      source.fetch.map { |record| record.serializable_hash }
     end
 
     def project
