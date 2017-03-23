@@ -1,9 +1,11 @@
 module ShoppingItems
   class SaveItems < Rectify::Command
-    def initialize(items, model: Ingredient, projection: Ingredients::ExpandMeasure)
+    def initialize(items, relation: Ingredients::Repository, projection: Ingredients::ExpandMeasure,
+                   command: Ingredients::Commands::CreateOrUpdate)
       @items = items
-      @model = model
+      @relation = relation
       @projection = projection
+      @command = command
     end
 
     def call
@@ -14,20 +16,12 @@ module ShoppingItems
 
     private
 
-    attr_reader :items, :model, :projection
+    attr_reader :items, :relation, :projection, :command
 
     def create_from(forms)
       forms.map do |record|
-        existing = model.find_by(name: record.name)
-        existing.nil? ? model.create(**record) : update(existing, record)
+        relation.command(command, record, name: record.name)
       end
-    end
-
-    def update(existing, record)
-      measure = "#{existing.amount} #{existing.unit}".to_measurement
-      measure += "#{record.amount} #{existing.unit}".to_measurement
-      record = record.to_h.merge(amount: measure.quantity, unit: measure.unit)
-      existing.update(**record)
     end
 
     def project(data)

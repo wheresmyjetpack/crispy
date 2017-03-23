@@ -1,27 +1,35 @@
 module Ingredients
   class Repository
-    def initialize(relation: Ingredient)
-      @relation = relation
+    include Persistence::RepositoryBase
+
+    source_model Ingredient
+
+    def initialize(scope: [])
+      @scope = Array(scope)
     end
 
-    def write(data)
-      persist(data)
+    def all
+      scoped_model.all
     end
 
-    def write_with(projection, data)
-      write(projection.apply(data))
+    def self.command(command, record, **opts)
+      command.call(record, opts)
     end
 
-    def write_collection(data)
-      data.each { |d| persist(d) }
+    def self.delete(record)
+      model.destroy(record)
     end
 
     private
 
-    attr_reader :relation
+    attr_reader :scope
 
-    def persist(data)
-      relation.create(**data)
+    def scoped_model
+      scope.empty? ? model : apply_scope(model)
+    end
+
+    def apply_scope(relation)
+      scope.inject(relation) { |r, s| s.call(r) }
     end
   end
 end
