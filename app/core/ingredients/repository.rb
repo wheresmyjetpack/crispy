@@ -3,6 +3,8 @@ module Ingredients
     include Persistence::RepositoryBase
 
     source_model Ingredient
+    commands :create_or_update
+
 
     def initialize(scope: [])
       @scope = Array(scope)
@@ -12,8 +14,8 @@ module Ingredients
       scoped_model.all
     end
 
-    def self.command(command, record, **opts)
-      command.call(record, opts)
+    def self.upsert(record)
+      create_or_update.with_key(name: record.name).call(record)
     end
 
     def self.delete(record)

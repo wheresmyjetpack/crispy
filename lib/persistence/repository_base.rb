@@ -4,14 +4,17 @@ module Persistence
     mattr_reader :model
 
     class_methods do
-      def source_model(model)
-        @@model = model
+      def commands(*args, **kwargs)
+        commands = kwargs.merge(args.map { |arg| [arg, arg] }.to_h)
+        commands.each do |command, mapping|
+          mattr_reader mapping do
+            "#{self.parent}::Commands::#{command.to_s.camelize}".constantize
+          end
+        end
       end
 
-      def merge_strategies(*strats)
-        strats.flatten.map do |strat|
-
-        end
+      def source_model(model)
+        @@model = model
       end
 
       def fetch(*args)

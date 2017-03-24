@@ -1,11 +1,9 @@
 module ShoppingItems
   class SaveItems < Rectify::Command
-    def initialize(items, relation: Ingredients::Repository, projection: Ingredients::ExpandMeasure,
-                   command: Ingredients::Commands::CreateOrUpdate)
+    def initialize(items, relation: Ingredients::Repository, projection: Ingredients::ExpandMeasure)
       @items = items
       @relation = relation
       @projection = projection
-      @command = command
     end
 
     def call
@@ -16,12 +14,10 @@ module ShoppingItems
 
     private
 
-    attr_reader :items, :relation, :projection, :command
+    attr_reader :items, :relation, :projection
 
     def create_from(forms)
-      forms.map do |record|
-        relation.command(command, record, name: record.name)
-      end
+      forms.map { |record| relation.upsert(record) }
     end
 
     def project(data)
