@@ -2,16 +2,29 @@ module Persistence
   module Commands
     class Update
       include Transproc::Composer
+
       cattr_reader :by_key
 
       def op(*args)
         Operations[*args]
       end
 
+      def operation(&block)
+        compose(&block)
+      end
+
       def self.chain_ops(ops)
         ops.each do |name, op_list|
           define_method(name) do
             op_list.map { |op| send(op) }.reduce(:>>)
+          end
+        end
+      end
+
+      def self.operations(*ops)
+        ops.each do |o|
+          define_method(o) do
+            op(o)
           end
         end
       end
@@ -25,6 +38,8 @@ module Persistence
         @@by_key = pairing
         self
       end
+
+      operations :lookup
 
       class << self
         alias_method :[], :call
