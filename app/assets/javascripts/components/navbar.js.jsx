@@ -24,8 +24,9 @@ const Navbar = ({ userLoggedIn, rootUri, pantryUri }) => {
   }
 
   return (
-    <header className="navbar" id="fixed-navbar">
+    <header className="navbar navbar-toggleable-md" id="fixed-navbar">
       <div className="container">
+      <a href={rootUri} className="navbar-brand"><i className="fa fa-cutlery fa-lg fa-inverse" aria-hidden="true"></i> Crispy</a>
         {nav}
       </div>
     </header>
@@ -33,7 +34,7 @@ const Navbar = ({ userLoggedIn, rootUri, pantryUri }) => {
 }
 
 const LoggedInNav = ({ rootUri, pantryUri }) => (
-  <nav className="nav justify-content-end logged-in">
+  <nav className="nav ml-auto logged-in">
     <a href={rootUri} className="nav-link">Home</a>
     <a href="/shopping_list/new" className="nav-link">Go Shopping</a>
     <div className="nav-item dropdown dropdown-menu-right">
@@ -50,7 +51,7 @@ const LoggedInNav = ({ rootUri, pantryUri }) => (
 );
 
 const LoggedOutNav = () => (
-  <nav className="nav justify-content-end logged-out">
+  <nav className="nav ml-auto logged-out">
     <a href="/login" className="nav-link">Log In</a>
     <a href="/sign_up" className="nav-link">Sign Up</a>
   </nav>
