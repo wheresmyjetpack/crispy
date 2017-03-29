@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="jumbotron">
+      <div class="text-center">
+        <h2 class="display-4">Sign Up</h2>
+        <p class="lead">Start keeping tabs on your pantry</p>
+      </div>
+      <hr>
+
+      <%= form_tag(sign_up_url, method: 'post') do %>
+        <div class="form-group row">
+          <label for="email" class="col-2 offset-1 col-form-label">Email</label>
+          <div class="col-8">
+            <input type="email" id="email" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="password" class="col-2 offset-1 col-form-label">Password</label>
+          <div class="col-8">
+            <input class="form-control" id="password" type="password">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="password_confirm" class="col-2 offset-1 col-form-label">Confirm Password</label>
+          <div class="col-8">
+            <input class="form-control" id="password_confirm" type="password">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-8 offset-3 text-center">
+            <button class="btn btn-primary form-control" type="submit">Submit</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
