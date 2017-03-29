@@ -1,15 +1,21 @@
-<h1>Log In</h1>
-
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control mb-2" %>
+  <div class="col-8">
+    <div class="jumbotron">
+      <h1 class="display-4">Log In</h1>
+      <p class="lead">Don't let your food go to waste</p>
+      <hr class="my-2">
+      <%= form_for(:session, url: login_path) do |f| %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control mb-2" %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
 
-      <%= f.submit 'Log in', class: "btn btn-primary my-4" %>
-    <% end %>
+        <%= f.submit 'Log in', class: "btn btn-primary my-4 form-control" %>
+        <div class="text-center">
+          <p class="text-muted small">Don't have an account? <%= link_to('Sign up', sign_up_url) %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
