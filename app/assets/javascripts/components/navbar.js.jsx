@@ -52,7 +52,7 @@ const LoggedInNav = ({ rootUri, pantryUri }) => (
 const LoggedOutNav = () => (
   <nav className="nav justify-content-end logged-out">
     <a href="/login" className="nav-link">Log In</a>
-    <a href="#" className="nav-link">Sign Up</a>
+    <a href="/sign_up" className="nav-link">Sign Up</a>
   </nav>
 );
 
