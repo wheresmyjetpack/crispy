@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post 'shopping_list/persist', to: 'shopping_items#persist'
   delete 'shopping_list', to: 'shopping_items#destroy'
 
+  get 'sign_up', to: 'users#new'
+  post 'sign_up', to: 'users#create'
+
   namespace 'api' do
     namespace 'v1' do
       get 'measurements', to: 'measurements#index'
