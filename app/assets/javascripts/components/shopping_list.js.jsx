@@ -95,6 +95,14 @@ const ShoppingList = ({ inputs, handleOnClick, authToken }) => {
     <div className="p-4 mt-sm-3 mb-sm-4">
       <form role="form" acceptCharset="UTF-8" action="/shopping_list" method="post" className="p-md-3">
         <input type="hidden" name="authenticity_token" value={authToken} />
+        <div className="form-group row">
+          <div className="col-6">
+            <label className="text-muted col-form-label">Ingredient</label>
+          </div>
+          <div className="col-4">
+            <label className="text-muted col-form-label">Amount</label>
+          </div>
+        </div>
         {inputs.map((input) => (input))}
         <hr />
         <div className="row">
