@@ -1,1 +1,30 @@
-<h1>Welcome, <%= @user.first_name %>!</h1>
+<h1 class="display-4 mb-3">Welcome, <%= @user.first_name %>!</h1>
+<div class="row mb-3">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-block">
+        <p class="lead card-text">
+        Bacon ipsum dolor amet rump short loin pork chop ribeye ham hock ball tip, leberkas swine kielbasa spare ribs pastrami burgdoggen andouille beef. Cow corned beef boudin doner. Fatback kielbasa frankfurter, kevin alcatra cupim tail andouille porchetta leberkas chicken strip steak pig rump. Drumstick alcatra leberkas pork belly chuck cupim, ground round tail doner beef chicken swine porchetta hamburger bacon. Pork chop short ribs turkey, pig biltong beef salami doner swine.
+        </p>
+        <p class="card-text">
+        Venison pancetta doner, beef corned beef sausage pork loin. Meatloaf burgdoggen filet mignon shank, chicken boudin bacon swine pork chop ball tip brisket kevin. Salami chuck sirloin chicken, filet mignon ham beef ball tip venison pork chop turducken. Sirloin boudin rump pork belly short ribs. Pork belly jowl ribeye, corned beef ham jerky short loin sirloin bacon short ribs prosciutto biltong tail.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card card-outline-primary">
+      <div class="card-header text-center">
+        <span class="card-title">Recently Added</span>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">test</li>
+        <li class="list-group-item">test</li>
+        <li class="list-group-item">test</li>
+      </ul>
+      <div class="card-footer text-center">
+        <small class="text-muted">Updated <%= Date.today %></small>
+      </div>
+    </div>
+  </div>
+</div>
