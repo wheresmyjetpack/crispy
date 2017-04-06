@@ -1,5 +1,5 @@
 module Ingredients
-  class ExpandMeasure < Transproc::Transformer[Functions]
+  class PrepareForCreate < Transproc::Transformer[Functions]
     map_array do
       symbolize_keys
       map_value :amount, -> v { v.to_measurement }

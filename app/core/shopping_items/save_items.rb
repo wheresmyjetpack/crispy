@@ -1,6 +1,6 @@
 module ShoppingItems
   class SaveItems < Rectify::Command
-    def initialize(items, relation: Ingredients::Repository, projection: Ingredients::ExpandMeasure)
+    def initialize(items, relation: Ingredients::Repository, projection: Ingredients::PrepareForCreate.new)
       @items = items
       @relation = relation
       @projection = projection
@@ -21,7 +21,7 @@ module ShoppingItems
     end
 
     def project(data)
-      projection.new.call(data)
+      projection.call(data)
     end
   end
 end
