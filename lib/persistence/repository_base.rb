@@ -4,12 +4,12 @@ module Persistence
     mattr_reader :model
 
     class_methods do
+      mattr_reader :registry { {} }
+
       def commands(*args, **kwargs)
         commands = kwargs.merge(args.map { |arg| [arg, arg] }.to_h)
         commands.each do |command, mapping|
-          mattr_reader mapping do
-            "#{self.parent}::Commands::#{command.to_s.camelize}".constantize
-          end
+          registry[command] =  "#{self.parent}::Commands::#{command.to_s.camelize}".constantize
         end
       end
 

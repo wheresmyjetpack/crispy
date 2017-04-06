@@ -15,7 +15,7 @@ module Ingredients
     end
 
     def self.upsert(record)
-      create_or_update.with_key(name: record.name)[record]
+      registry[:create_or_update].with_key(name: record.name)[record]
     end
 
     def self.delete(record)
