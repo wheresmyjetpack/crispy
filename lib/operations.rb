@@ -5,6 +5,7 @@ module Operations
 
   import Transproc::ArrayTransformations
   import Transproc::HashTransformations
+  import Transproc::ClassTransformations
 
   def self.lookup(hash)
     hash.fetch(:model).find_by(hash.fetch(:by_key))
