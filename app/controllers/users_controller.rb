@@ -15,5 +15,16 @@ class UsersController < ApplicationController
   end
 
   def create
+    Users::Signup.call(params) do
+      on(:ok) do
+        flash[:success] = 'Thanks for signing up! Please login to continue.'
+        redirect_to login_path
+      end
+
+      on(:invalid) do |errors|
+        flash[:danger] =  errors
+        redirect_to :back
+      end
+    end
   end
 end
