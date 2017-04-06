@@ -4,7 +4,8 @@
     "browserify": "~10.2.4",
     "browserify-incremental": "^3.0.1",
     "reactify": "^1.1.0",
-    "shortid": "~2.2.6"
+    "shortid": "~2.2.6",
+    "babel-polyfill": "~6.23.0"
   },
   "license": "MIT",
   "engines": {
