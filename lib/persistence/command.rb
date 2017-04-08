@@ -15,6 +15,10 @@ module Persistence
     end
 
     class_methods do
+      def call(record)
+        new(record).call
+      end
+
       def chain_ops(ops)
         ops.each do |name, op_list|
           define_method(name) do
@@ -30,6 +34,12 @@ module Persistence
           end
         end
       end
+
+      alias_method :[], :call
     end
+
+    private
+
+    attr_reader :record, :model
   end
 end
