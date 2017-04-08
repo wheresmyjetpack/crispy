@@ -26,4 +26,8 @@ module Operations
   def self.map_value_to_hash(hash, key)
     hash.merge(key => hash[key].to_h)
   end
+
+  def self.capitalize_string(string)
+    string.capitalize
+  end
 end
