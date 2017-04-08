@@ -1,7 +1,7 @@
 module Ingredients
   module Commands
     class CreateOrUpdate < Persistence::Commands::Update
-      operations :create
+      operations :create, :lookup
       chain_ops update: [:collapse_measures, :calc_measurements, :update_measurements]
 
       def initialize(record, model: Ingredient)
@@ -16,8 +16,6 @@ module Ingredients
       end
 
       private
-
-      attr_reader :record, :model
 
       def update_measurements
         operation do |ops|
